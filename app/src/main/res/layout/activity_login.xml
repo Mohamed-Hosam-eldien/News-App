@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            tools:context=".MainActivity">
+            tools:context=".home.MainActivity">
 
             <TextView
                 android:layout_width="match_parent"

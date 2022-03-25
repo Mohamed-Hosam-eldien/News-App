@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.example.news.MainActivity
+import com.example.news.home.MainActivity
 import com.example.news.R
 import com.example.news.databinding.ActivityRegisterBinding
 import com.example.news.login.LoginActivity
@@ -68,12 +68,17 @@ class RegisterActivity : AppCompatActivity() {
         var userName=binding.userName.text.toString()
         var email=binding.userEmail.text.toString()
         var phone=binding.userPhone.text.toString()
+        var confirm=binding.confirmPassword.text.toString()
 
         if (!Utility.isPassValid(password) ||password.isEmpty()) {
-            binding.userName.error = "Write correct password"
+            binding.userPassword.error = "Write correct password"
             return false
         }
 
+        if(password!=confirm){
+            binding.confirmPassword.error="password don't  match"
+            return false
+        }
 
         if (!Utility.isEmailValid(email)||email.isEmpty() ) {
             println("not valid email")
@@ -93,7 +98,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         return true
-
     }
 
     private fun showUserNotExistDialog() {
@@ -116,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
     private fun goToMainScreen() {
-        var intent=Intent(this,MainActivity::class.java)
+        var intent=Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

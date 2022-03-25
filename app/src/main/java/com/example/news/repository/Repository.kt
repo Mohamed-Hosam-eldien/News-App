@@ -4,14 +4,16 @@ import androidx.lifecycle.LiveData
 import com.example.news.data.source.local.LocalDataSourceInterface
 import com.example.news.data.source.remote.RemoteDataSource
 import com.example.news.data.source.remote.RemoteDataSourceInterface
+import com.example.news.models.NewsModel
 import com.example.news.models.User
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class Repository @Inject constructor
     (var localDataSource: LocalDataSourceInterface,
-//     remoteDataSource:RemoteDataSourceInterface
+     var remoteDataSource:RemoteDataSourceInterface
 ) :RepositoryInterface{
 
     override  suspend fun getUserFromDataBase(userEmail: String, userPassword: String):User {
@@ -21,4 +23,10 @@ class Repository @Inject constructor
     override suspend fun insertUser(user: User) :Long{
       return  localDataSource.insertUser(user)
     }
+
+    override suspend fun getAllNews(): Response<NewsModel> {
+        return remoteDataSource.getAllNews()
+    }
+
+
 }

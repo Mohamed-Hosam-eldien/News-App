@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.example.news.MainActivity
+import com.example.news.home.MainActivity
 import com.example.news.R
 import com.example.news.databinding.ActivityLoginBinding
 import com.example.news.utlities.Utility
@@ -15,6 +15,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+
     lateinit var password:String
     lateinit var email:String
 

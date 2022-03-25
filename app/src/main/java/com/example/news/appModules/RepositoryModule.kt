@@ -1,7 +1,5 @@
 package com.example.news.appModules
 
-import com.example.news.data.source.local.LocalDataSourceInterface
-import com.example.news.data.source.remote.RemoteDataSourceInterface
 import com.example.news.repository.Repository
 import com.example.news.repository.RepositoryInterface
 import dagger.Binds

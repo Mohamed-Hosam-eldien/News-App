@@ -19,9 +19,7 @@ interface ModuleDataSource {
     @Binds
     fun provideLocalDataSource(localDataSource: LocalDataSource):LocalDataSourceInterface
 
-//    @Binds
-//    fun provideRemoteDataSource(remoteDataSource: RemoteDataSource):RemoteDataSourceInterface
-
-
+    @Binds
+    fun provideRemoteDataSource(remoteDataSource: RemoteDataSource):RemoteDataSourceInterface
 
 }
