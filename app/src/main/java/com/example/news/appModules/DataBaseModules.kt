@@ -27,6 +27,7 @@ object DataBaseModules {
     @Provides
     @Singleton
     fun provideUserDao(db:AppDataBase): UserDao = db.userDao()
+
     @Provides
     @Singleton
     fun provideNewsDao(db:AppDataBase): NewsDao=db.newsDao()

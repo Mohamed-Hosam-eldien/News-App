@@ -1,41 +1,46 @@
 package com.example.news.utlities
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import com.example.news.models.User
 
 class Utility {
 
-    companion object{
+    companion object {
 
-        var USER : User? = null;
+        var USER: User? = null;
 
-        fun isEmailValid(email: String) : Boolean{
+        fun isEmailValid(email: String): Boolean {
 
-            if (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            if (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 return true
             }
             return false
         }
 
-        fun isPassValid(pass: String) : Boolean{
-            if (pass.length in 5..21){
+        fun isPassValid(pass: String): Boolean {
+            if (pass.length in 5..21) {
                 return true
             }
             return false
         }
 
-        fun isPhoneValid(phone: String) : Boolean{
+        fun isPhoneValid(phone: String): Boolean {
 
-            if (phone.length != 11 && !phone.startsWith("01")){
+            if (phone.length != 11 && !phone.startsWith("01")) {
                 return false
             }
             return true
         }
 
-        fun isUsernameValid(user: String) : Boolean{
+        fun isUsernameValid(user: String): Boolean {
 
-            if (user.length in 3..13){
+            if (user.length in 3..13) {
                 return true
             }
             return false
@@ -73,6 +78,6 @@ class Utility {
             return false
         }
     }
-    }
+
 
 }

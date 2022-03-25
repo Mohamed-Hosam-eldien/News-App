@@ -50,4 +50,8 @@ class Repository @Inject constructor
     override suspend fun getAllArticleFromDataBase(): List<Article> {
        return localDataSource.getAllArticleFromDataBase()
     }
+
+    override suspend fun getAllArticleBySearch(query: String): List<Article> {
+        return localDataSource.getAllArticleBySearch(query)
+    }
 }

@@ -23,14 +23,15 @@ class NewsHomeViewModel @Inject constructor(
     private var _getNews = MutableLiveData<List<Article>>()
     private var _setLoad = MutableLiveData<Int>()
     private var _setError = MutableLiveData<String>()
+    private var _getNewsBySearch = MutableLiveData<List<Article>>()
 
     var getNews: LiveData<List<Article>> = _getNews
     var getLoad: LiveData<Int> = _setLoad
     var getError: LiveData<String> = _setError
+    var getNewsBySearch: LiveData<List<Article>> = _getNewsBySearch
 
 
-
-    fun getAllNewsForHome(context: Context) {
+    fun getAllNewsForHome() {
         _setLoad.postValue(View.VISIBLE)
         viewModelScope.launch {
             val result = repository.getAllNews()
@@ -45,7 +46,6 @@ class NewsHomeViewModel @Inject constructor(
                 }
 
             }
-
            getNewsFromDataBase()
         }
 
@@ -53,11 +53,17 @@ class NewsHomeViewModel @Inject constructor(
 
      fun getNewsFromDataBase() {
          viewModelScope.launch {
-             var newsResult = repository.getAllArticleFromDataBase()
+             val newsResult = repository.getAllArticleFromDataBase()
              _getNews.postValue(newsResult)
              _setLoad.postValue(View.GONE)
          }
+    }
 
+    fun getNewsBySearch(query: String) {
+        viewModelScope.launch {
+            var newsResult = repository.getAllArticleBySearch(query)
+            _getNewsBySearch.postValue(newsResult)
+        }
     }
 
 }
