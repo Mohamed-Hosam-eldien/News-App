@@ -1,16 +1,18 @@
 package com.example.news.login
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.news.MainActivity
-import com.example.news.utlities.Utility
+import androidx.lifecycle.LifecycleOwner
+import com.example.news.R
 import com.example.news.databinding.ActivityLoginBinding
+import com.example.news.utlities.Utility
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import java.util.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -68,5 +70,24 @@ class LoginActivity : AppCompatActivity() {
             return false
         }
         return true
+    private fun showUserNotExistDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+
+        alertDialog.apply {
+            setIcon(R.drawable.ic_baseline_error_outline_24)
+            setTitle("Login Failed")
+            setMessage("user is not exist, please register and try again")
+            setPositiveButton("Register") { _, _ ->
+                goToRegisterScreen()
+            }
+        }.create().show()
     }
+
+    private fun goToRegisterScreen() {
+        Log.d(TAG, "goToRegisterScreen: ")
+        // intent handle
+        finish()
+    }
+    
+    
 }
