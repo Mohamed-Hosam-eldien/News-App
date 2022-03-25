@@ -1,13 +1,10 @@
 package com.example.news.newsHome
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,35 +13,34 @@ import com.example.news.databinding.FragmentNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewsFragment : Fragment(), OnNewClickListener, SearchInterface {
+class NewsFragment : Fragment() ,OnNewClickListener{
+
 
     private val newsHomeViewModel: NewsHomeViewModel by viewModels()
-    private lateinit var binding: FragmentNewsBinding
-    lateinit var newsHomeAdapter: NewsHomeAdapter
-
-
+    private lateinit var binding : FragmentNewsBinding
+     lateinit var newsHomeAdapter:NewsHomeAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
-        binding.lifecycleOwner = this
+        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+        binding.lifecycleOwner=this
 
-        binding.viewModel = newsHomeViewModel
-        newsHomeAdapter = NewsHomeAdapter(requireContext(), arrayListOf(), this)
+        binding.viewModel=newsHomeViewModel
+        newsHomeAdapter= NewsHomeAdapter(requireContext(), arrayListOf(),this)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpUi()
+          setUpUi()
         newsHomeViewModel.getAllNewsFromApi()
-        newsHomeViewModel.getNews.observe(
-            viewLifecycleOwner
+        newsHomeViewModel.getNews.observe(viewLifecycleOwner
         ) {
-            if (it != null) {
+            if(it!=null){
                 newsHomeAdapter.setData(it.articles)
-            } else {
+            }
+            else{
 
             }
 
@@ -52,23 +48,18 @@ class NewsFragment : Fragment(), OnNewClickListener, SearchInterface {
     }
 
     private fun setUpUi() {
-        binding.newsRecycle.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL, false
-            )
-            adapter = newsHomeAdapter
+
+            binding.newsRecycle.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(requireContext(),
+                    LinearLayoutManager.VERTICAL ,false)
+                adapter=newsHomeAdapter
+            }
+
         }
-    }
 
 
     override fun OnClick() {
 
     }
-
-    override fun onSearch(query: String, context: Context) {
-        
-    }
-
 }

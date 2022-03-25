@@ -1,10 +1,6 @@
 package com.example.news
 
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
