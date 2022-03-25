@@ -2,8 +2,8 @@ package com.example.news.appModules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.news.db.AppDataBase
-import com.example.news.db.NewsDao
+import com.example.news.data.source.db.AppDataBase
+import com.example.news.data.source.db.NewsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
