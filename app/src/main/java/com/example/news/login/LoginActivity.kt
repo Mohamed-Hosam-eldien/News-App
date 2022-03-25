@@ -23,7 +23,6 @@ class LoginActivity : AppCompatActivity() {
             .observe(this) {
                 if(it!=null){
                     Log.e(TAG, "onCreate:  if ", )
-
                  }
                 else{
                     showUserNotExistDialog()
