@@ -14,7 +14,7 @@
         android:id="@+id/profileFragment"
         android:name="com.example.news.ProfileFragment"
         android:label="fragment_profile2"
-        tools:layout="@layout/fragment_profile2" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.news.FavoritesFragment"
