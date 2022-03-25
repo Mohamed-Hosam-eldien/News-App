@@ -1,13 +1,22 @@
-package com.example.news
+package com.example.news.utlities
 
 import android.text.TextUtils
 import android.util.Patterns
+import com.example.news.models.User
 
 class Utility {
 
     companion object{
+
+        var USER : User? = null;
+
+
         fun isEmailValid(email: String) : Boolean{
-            return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+            if (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                return false
+            }
+            return true
         }
 
         fun isPassValid(pass: String) : Boolean{

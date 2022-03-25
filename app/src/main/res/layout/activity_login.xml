@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewmodel"
+            type="com.example.news.login.LoginViewModel" />
 
     </data>
 
@@ -35,35 +38,6 @@
                 android:layout_marginTop="32dp"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="@string/enter_your_name"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="16dp"
-                    app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
-                    app:boxCornerRadiusTopStart="16dp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="20"
-                    app:endIconMode="clear_text"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                    app:errorTextColor="@color/red"
-                    app:startIconDrawable="@drawable/ic_baseline_person_24">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="20" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -86,36 +60,6 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="20" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edtPhone"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="@string/enter_your_phone"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="16dp"
-                    app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
-                    app:boxCornerRadiusTopStart="16dp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="11"
-                    app:endIconMode="clear_text"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                    app:errorTextColor="@color/red"
-                    app:startIconDrawable="@drawable/ic_baseline_phone_24">
-
-                    <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="20" />
