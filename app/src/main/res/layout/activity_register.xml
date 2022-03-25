@@ -6,7 +6,7 @@
     <data>
    <variable
        name="viewModel"
-       type="com.example.news.register.RegisterViewModel" />
+       type="com.example.register.RegisterViewModel" />
     </data>
 
     <ScrollView
