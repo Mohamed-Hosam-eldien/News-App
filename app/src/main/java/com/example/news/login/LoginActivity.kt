@@ -11,6 +11,7 @@ import com.example.news.databinding.ActivityLoginBinding
 import com.example.news.utlities.Utility
 import com.example.news.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
+import io.paperdb.Paper
 import java.util.*
 
 @AndroidEntryPoint
@@ -44,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                     .observe(this) {
                         if(it!=null){
 
-                          Utility.USER = it
+                            Paper.book().write("user", it)
                             var intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
 
@@ -56,9 +57,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-
-
-
 
     }
 
@@ -91,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
     private fun goToRegisterScreen() {
-         var intent=Intent(this,RegisterActivity::class.java)
+        val intent=Intent(this,RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }

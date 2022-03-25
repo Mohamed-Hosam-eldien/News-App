@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.news.data.source.db.AppDataBase
 import com.example.news.data.source.db.NewsDao
-import com.example.news.db.UserDao
+import com.example.news.data.source.db.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

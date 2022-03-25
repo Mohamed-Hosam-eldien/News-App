@@ -1,7 +1,5 @@
 package com.example.news.data.source.local
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.news.models.Article
 import com.example.news.models.User
 
@@ -12,5 +10,6 @@ interface LocalDataSourceInterface {
      suspend fun getAllArticleFromDataBase():List<Article>
      suspend fun getAllArticleBySearch(query: String):List<Article>
      suspend fun getNewsByUrlFromDataBase(newUrl:String):Article
+     suspend fun updatePassword(pass:String, mail:String)
 
 }

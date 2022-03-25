@@ -12,6 +12,7 @@ import com.example.news.login.LoginActivity
 import com.example.news.models.User
 import com.example.news.utlities.Utility
 import dagger.hilt.android.AndroidEntryPoint
+import io.paperdb.Paper
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
                 registerViewModel.getUser.observe(this) {
 
                     if (it != null) {
-                        Utility.USER = it
+                        Paper.book().write("user", it)
                         goToMainScreen()
                     } else {
                         showUserNotExistDialog()

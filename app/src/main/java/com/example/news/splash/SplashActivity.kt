@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Paper.init(this)
-        var user: User? = Paper.book().read("user")
+        val user: User? = Paper.book().read("user")
         Handler(Looper.myLooper()!!).postDelayed({
         if (user == null){
             val intent= Intent(this, LoginActivity::class.java)

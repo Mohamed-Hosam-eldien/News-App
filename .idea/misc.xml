@@ -19,7 +19,14 @@
         <entry key="..\:/android_studio_projects/News/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.164" />
         <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_login2.xml" value="0.171875" />
         <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_register.xml" value="0.171875" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/change_pass_layout.xml" value="0.33" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/fragment_details.xml" value="0.171875" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/fragment_news.xml" value="0.171875" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/fragment_profile.xml" value="0.171875" />
         <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/login_dialog.xml" value="0.1" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/news_item.xml" value="0.171875" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/shimmer_placeholder_layout.xml" value="0.171875" />
       </map>
     </option>
   </component>
