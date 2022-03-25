@@ -1,21 +1,16 @@
 package com.example.news.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LifecycleOwner
 import com.example.news.MainActivity
 import com.example.news.R
 import com.example.news.databinding.ActivityLoginBinding
 import com.example.news.utlities.Utility
-import com.example.register.RegisterActivity
+import com.example.news.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import java.util.*
 
 @AndroidEntryPoint
