@@ -9,13 +9,17 @@ import com.example.news.models.User
 
 
 @Dao
-interface NewsDao {
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun insertUser(user: User)
+ interface NewsDao {
 
-  @Query("SELECT * FROM user where userEmail= :userEmail AND userPassword= :userPassword ")
-    fun getUserFromDataBase(userEmail:String,userPassword:String):LiveData<User>
-}
+   @Insert(onConflict = OnConflictStrategy.REPLACE)
+   suspend fun insertUser(user: User):Long
+
+    @Query("SELECT * FROM user where userEmail= :userEmail AND userPassword= :userPassword ")
+     suspend fun getUserFromDataBase(userEmail:String,userPassword:String):User
+
+
+
+ }
 
 
 

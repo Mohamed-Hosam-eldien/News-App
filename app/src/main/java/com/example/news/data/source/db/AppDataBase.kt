@@ -1,8 +1,9 @@
-package com.example.news.db
+package com.example.news.data.source.db
 
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.news.db.NewsDao
 import com.example.news.models.User
 
 @Database(entities = arrayOf(User::class),
@@ -11,6 +12,6 @@ import com.example.news.models.User
 //@TypeConverters(DataConverter::class)
 abstract class AppDataBase:RoomDatabase() {
 
-    abstract fun newsDawDao():NewsDao
+    abstract fun newsDawDao(): NewsDao
 
 }
