@@ -12,4 +12,8 @@ class LocalDataSource  @Inject constructor(private val newsDao: NewsDao)
     override fun getUserFromDataBase(userEmail:String,userPassword:String): LiveData<User> {
        return  newsDao.getUserFromDataBase(userEmail,userPassword)
     }
+
+    override suspend fun insertUser(user: User) {
+        newsDao.insertUser(user)
+    }
 }

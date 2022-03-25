@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/android_studio_projects/News/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.164" />
-        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_login2.xml" value="0.171875" />
-        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/login_dialog.xml" value="0.1" />
+        <entry key="..\:/androidProject/News-App/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/androidProject/News-App/app/src/main/res/layout/activity_register.xml" value="0.151268115942029" />
       </map>
     </option>
   </component>
