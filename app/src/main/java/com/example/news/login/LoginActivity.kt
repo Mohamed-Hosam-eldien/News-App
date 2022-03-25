@@ -1,34 +1,35 @@
 package com.example.news.login
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.news.Utility
-import com.example.news.databinding.ActivityLoginBinding
-import kotlinx.coroutines.delay
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.LifecycleOwner
+import com.example.news.R
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import java.util.*
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityLoginBinding
-
+    private val loginViewModel:LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_login)
 
-        var email = binding.edtEmail.text.toString()
-        var pass = binding.edtPassword.text.toString()
 
-        binding.btnLogin.setOnClickListener {
-            if (Utility.isEmailValid(email))
-            {
-                binding.edtEmail.error = "write correct email"
+        loginViewModel.getUserFromDataBase("doaa","000")
+            .observe(this) {
+                if(it!=null){
+                    Log.e(TAG, "onCreate:  if ", )
+
+                 }
+                else{
+                    Log.e(TAG, "onCreate:  else ", )
+
+                }
             }
-            if (Utility.isPassValid(pass))
-            {
-                binding.edtEmail.error = "write correct pass"
-            }
-        }
-
-
     }
 }

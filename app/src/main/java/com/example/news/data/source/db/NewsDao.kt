@@ -1,4 +1,4 @@
-package com.example.news.data.source.db
+package com.example.news.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -9,16 +9,16 @@ import com.example.news.models.User
 
 
 @Dao
-interface NewsDao {
-
+ interface NewsDao {
    @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun insertUser(user: User)
+   suspend fun insertUser(user: User)
 
-  @Query("SELECT * FROM user where userEmail= :userEmail AND userPassword= :userPassword ")
-    fun getUserFromDataBase(userEmail:String,userPassword:String):LiveData<User>
+    @Query("SELECT * FROM user where userEmail= :userEmail AND userPassword= :userPassword ")
+     fun getUserFromDataBase(userEmail:String,userPassword:String):LiveData<User>
 
-    
-}
+
+
+ }
 
 
 
