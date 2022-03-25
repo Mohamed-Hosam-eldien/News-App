@@ -12,17 +12,17 @@ import com.example.news.utlities.Utility
 import com.example.news.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
-import java.util.*
+
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var password:String
-    lateinit var email:String
+    lateinit var password: String
+    lateinit var email: String
 
 
-    private val loginViewModel:LoginViewModel by viewModels()
-    private lateinit var binding : ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,36 +33,32 @@ class LoginActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewmodel = loginViewModel
 
-
         binding.openRegister.setOnClickListener {
             goToRegisterScreen()
         }
+
         binding.btnLogin.setOnClickListener {
 
-            if (isDataValidate()){
-                loginViewModel.getUserFromDataBase(email,password)
-                     loginViewModel.getUser
-                    .observe(this) {
-                        if(it!=null){
-
-                            Paper.book().write("user", it)
-                            var intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-
-                        }
-                        else{
-                            showUserNotExistDialog()
-                        }
+            if (isDataValidate()) {
+                loginViewModel.getUserFromDataBase(email, password)
+                loginViewModel.getUser.observe(this) {
+                    if (it != null) {
+                        Paper.book().write("user", it)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        showUserNotExistDialog()
                     }
+                }
             }
 
         }
 
     }
 
-    private fun isDataValidate() : Boolean {
-         password = binding.userPasswordLogin.text.toString()
-         email = binding.userEmailLogin.text.toString()
+    private fun isDataValidate(): Boolean {
+        val password = binding.userPasswordLogin.text.toString()
+        val email = binding.userEmailLogin.text.toString()
         if (!Utility.isPassValid(password) || password.isEmpty()) {
             binding.userPasswordLogin.error = "Write correct password"
             return false
@@ -70,10 +66,12 @@ class LoginActivity : AppCompatActivity() {
 
         if (!Utility.isEmailValid(email) || email.isEmpty()) {
             binding.userEmailLogin.error = "Write correct email"
+            binding.userEmailLogin.error = "Write correct email"
             return false
         }
         return true
     }
+
     private fun showUserNotExistDialog() {
         val alertDialog = AlertDialog.Builder(this)
 
@@ -82,17 +80,15 @@ class LoginActivity : AppCompatActivity() {
             setTitle("Login Failed")
             setMessage("user is not exist, please register and try again")
             setPositiveButton("Register") { _, _ ->
-                  goToRegisterScreen()
+                goToRegisterScreen()
             }
         }.create().show()
 
-
     }
+
     private fun goToRegisterScreen() {
-        val intent=Intent(this,RegisterActivity::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
-    
-    
 }
