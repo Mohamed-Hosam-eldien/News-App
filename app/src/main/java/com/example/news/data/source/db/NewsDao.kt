@@ -1,25 +1,18 @@
-package com.example.news.db
+package com.example.news.data.source.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.news.models.Article
 import com.example.news.models.User
 
-
 @Dao
- interface NewsDao {
+interface NewsDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertUser(articles:Article)
 
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
-   suspend fun insertUser(user: User):Long
+    @Query("SELECT * FROM News ")
+    suspend fun getNewsFromDataBase():List<Article>
 
-    @Query("SELECT * FROM user where userEmail= :userEmail AND userPassword= :userPassword ")
-     suspend fun getUserFromDataBase(userEmail:String,userPassword:String):User
-
-
-
- }
-
-
-
+}
