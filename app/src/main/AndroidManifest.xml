@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.News">
         <activity
-            android:name="com.example.register.RegisterActivity"
+            android:name="com.example.news.register.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"

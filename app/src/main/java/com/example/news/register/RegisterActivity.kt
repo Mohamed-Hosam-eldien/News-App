@@ -1,9 +1,8 @@
-package com.example.register
+package com.example.news.register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.news.MainActivity
