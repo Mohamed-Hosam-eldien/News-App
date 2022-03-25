@@ -5,11 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.LifecycleOwner
+import androidx.appcompat.app.AlertDialog
 import com.example.news.R
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import java.util.*
+
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -27,9 +26,27 @@ class LoginActivity : AppCompatActivity() {
 
                  }
                 else{
-                    Log.e(TAG, "onCreate:  else ", )
-
+                    showUserNotExistDialog()
                 }
             }
+    }
+
+    private fun showUserNotExistDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+
+        alertDialog.apply {
+            setIcon(R.drawable.ic_baseline_error_outline_24)
+            setTitle("Login Failed")
+            setMessage("user is not exist, please register and try again")
+            setPositiveButton("Register") { _, _ ->
+                goToRegisterScreen()
+            }
+        }.create().show()
+    }
+
+    private fun goToRegisterScreen() {
+        Log.d(TAG, "goToRegisterScreen: ")
+        // intent handle
+        finish()
     }
 }

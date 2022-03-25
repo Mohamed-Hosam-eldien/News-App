@@ -10,6 +10,7 @@ import com.example.news.models.User
 
 @Dao
  interface NewsDao {
+
    @Insert(onConflict = OnConflictStrategy.REPLACE)
    suspend fun insertUser(user: User)
 
