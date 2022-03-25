@@ -1,12 +1,11 @@
 package com.example.news.data.source.local
 
 import com.example.news.data.source.db.NewsDao
-import com.example.news.data.source.db.UserDao
 import com.example.news.models.Article
 import com.example.news.models.User
 import javax.inject.Inject
 
-class LocalDataSource  @Inject constructor(private val userDao: UserDao, private  val newsDao: NewsDao)
+class LocalDataSource  @Inject constructor(private val userDao: UserDao,private  val newsDao: NewsDao)
     :LocalDataSourceInterface {
 
     override suspend fun getUserFromDataBase(userEmail:String,userPassword:String): User {
@@ -32,6 +31,14 @@ class LocalDataSource  @Inject constructor(private val userDao: UserDao, private
 
     override suspend fun getNewsByUrlFromDataBase(newUrl: String): Article {
         return newsDao.getNewsByUrlFromDataBase(newUrl)
+    }
+
+    override suspend fun getAllNewsToFav(): List<Article> {
+        return newsDao.getAllNewsToFav()
+    }
+
+    override suspend fun getNewsStatus(favorite: Int, url: String) {
+        newsDao.getNewsStatus(favorite, url)
     }
 
     override suspend fun updatePassword(pass: String, mail: String) {

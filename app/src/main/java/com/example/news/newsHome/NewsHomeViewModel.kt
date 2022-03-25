@@ -12,6 +12,7 @@ import com.example.news.models.NewsModel
 import com.example.news.repository.RepositoryInterface
 import com.example.news.utlities.Utility
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -52,7 +53,7 @@ class NewsHomeViewModel @Inject constructor(
     }
 
      fun getNewsFromDataBase() {
-         viewModelScope.launch {
+         viewModelScope.launch(Dispatchers.IO) {
              val newsResult = repository.getAllArticleFromDataBase()
              _getNews.postValue(newsResult)
              _setLoad.postValue(View.GONE)
@@ -60,9 +61,16 @@ class NewsHomeViewModel @Inject constructor(
     }
 
     fun getNewsBySearch(query: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             var newsResult = repository.getAllArticleBySearch(query)
             _getNewsBySearch.postValue(newsResult)
+        }
+    }
+
+    fun getNewsStatus(favorite:Int, url:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getNewsStatus(favorite, url)
+
         }
     }
 

@@ -189,12 +189,16 @@ class NewsFragment : Fragment(), OnNewClickListener {
         newsHomeViewModel.getNewsBySearch(searchQuery)
     }
 
-    override fun OnClick(view: View, newUrl: String) {
+    override fun onClick(view: View, newUrl: String) {
 
         val bundle= Bundle()
         bundle.putString("newurl",newUrl)
         Navigation.findNavController(view).navigate(R.id.action_newsFragment_to_detailsFragment,bundle);
 
     }
+
+    override fun onFavClick(fav:Int, url:String) {
+        newsHomeViewModel.getNewsStatus(fav, url)
     }
+}
 

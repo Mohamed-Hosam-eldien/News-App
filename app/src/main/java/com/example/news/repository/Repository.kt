@@ -59,6 +59,14 @@ class Repository @Inject constructor
         return localDataSource.getNewsByUrlFromDataBase(newUrl)
     }
 
+    override suspend fun getAllNewsToFav(): List<Article> {
+        return localDataSource.getAllNewsToFav()
+    }
+
+    override suspend fun getNewsStatus(favorite: Int, url: String) {
+        localDataSource.getNewsStatus(favorite, url)
+    }
+
     override suspend fun updateUserPass(userPassword: String, userEmail: String) {
         return localDataSource.updatePassword(userPassword, userEmail)
     }
