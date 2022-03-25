@@ -5,18 +5,13 @@
       <map>
         <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/activity_login.xml" value="0.22509057971014493" />
         <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/activity_main.xml" value="0.13768115942028986" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/activity_news.xml" value="0.22010869565217392" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/activity_register.xml" value="0.2269021739130435" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_favorite.xml" value="0.22010869565217392" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_favorites.xml" value="0.2269021739130435" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_new.xml" value="0.2269021739130435" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_news.xml" value="0.22010869565217392" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_profile.xml" value="0.22010869565217392" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/fragment_profile2.xml" value="0.2269021739130435" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/layout/news_item.xml" value="0.2" />
-        <entry key="..\:/NEWS project/news app/News-App/app/src/main/res/menu/news_menu.xml" value="0.25052083333333336" />
+        <entry key="..\:/androidProject/News-App/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/androidProject/News-App/app/src/main/res/layout/activity_register.xml" value="0.151268115942029" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.164" />
         <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_login2.xml" value="0.171875" />
         <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/fragment_news.xml" value="0.171875" />
+        <entry key="..\:/android_studio_projects/News/app/src/main/res/layout/login_dialog.xml" value="0.1" />
       </map>
     </option>
   </component>
