@@ -2,6 +2,8 @@ package com.example.news.appModules
 
 import com.example.news.data.source.local.LocalDataSource
 import com.example.news.data.source.local.LocalDataSourceInterface
+import com.example.news.data.source.remote.RemoteDataSource
+import com.example.news.data.source.remote.RemoteDataSourceInterface
 
 import dagger.Binds
 import dagger.Module
@@ -17,6 +19,7 @@ interface ModuleDataSource {
     fun provideLocalDataSource(localDataSource: LocalDataSource): LocalDataSourceInterface
 
 
-//    @Binds
-//    fun provideRemoteDataSource(remoteDataSource: RemoteDataSource):RemoteDataSourceInterface
+    @Binds
+    fun provideRemoteDataSource(remoteDataSource: RemoteDataSource): RemoteDataSourceInterface
+
 }
