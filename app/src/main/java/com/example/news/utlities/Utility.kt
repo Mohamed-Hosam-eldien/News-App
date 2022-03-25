@@ -1,26 +1,33 @@
-package com.example.news
+package com.example.news.utlities
 
 import android.text.TextUtils
 import android.util.Patterns
+import com.example.news.models.User
 
 class Utility {
 
     companion object{
+
+        var USER : User? = null;
+
         fun isEmailValid(email: String) : Boolean{
-            return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+            if (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                return true
+            }
+            return false
         }
 
         fun isPassValid(pass: String) : Boolean{
-
             if (pass.length in 5..21){
-                return false
+                return true
             }
-            return true
+            return false
         }
 
         fun isPhoneValid(phone: String) : Boolean{
 
-            if (phone.length != 11){
+            if (phone.length != 11 && !phone.startsWith("01")){
                 return false
             }
             return true
@@ -29,9 +36,9 @@ class Utility {
         fun isUsernameValid(user: String) : Boolean{
 
             if (user.length in 3..13){
-                return false
+                return true
             }
-            return true
+            return false
         }
     }
 

@@ -14,7 +14,11 @@ class Repository @Inject constructor
 //     remoteDataSource:RemoteDataSourceInterface
 ) :RepositoryInterface{
 
-    override fun getUserFromDataBase(userEmail: String, userPassword: String): LiveData<User> {
+    override  suspend fun getUserFromDataBase(userEmail: String, userPassword: String):User {
         return localDataSource.getUserFromDataBase(userEmail,userPassword)
+    }
+
+    override suspend fun insertUser(user: User) :Long{
+      return  localDataSource.insertUser(user)
     }
 }

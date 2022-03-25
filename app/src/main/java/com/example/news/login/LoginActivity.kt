@@ -1,35 +1,85 @@
 package com.example.news.login
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.LifecycleOwner
+import com.example.news.MainActivity
 import com.example.news.R
+import com.example.news.databinding.ActivityLoginBinding
+import com.example.news.utlities.Utility
+import com.example.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
-
+import dagger.hilt.android.HiltAndroidApp
+import java.util.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+    lateinit var password:String
+    lateinit var email:String
+
 
     private val loginViewModel:LoginViewModel by viewModels()
+    private lateinit var binding : ActivityLoginBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.lifecycleOwner = this
+        binding.viewmodel = loginViewModel
 
 
-        loginViewModel.getUserFromDataBase("doaa","000")
-            .observe(this) {
-                if(it!=null){
-                    Log.e(TAG, "onCreate:  if ", )
-                 }
-                else{
-                    showUserNotExistDialog()
-                }
+        binding.openRegister.setOnClickListener {
+            goToRegisterScreen()
+        }
+        binding.btnLogin.setOnClickListener {
+
+            if (isDataValidate()){
+                loginViewModel.getUserFromDataBase(email,password)
+                     loginViewModel.getUser
+                    .observe(this) {
+                        if(it!=null){
+
+                          Utility.USER = it
+                            var intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+
+                        }
+                        else{
+                            showUserNotExistDialog()
+                        }
+                    }
             }
+
+        }
+
+
+
+
     }
 
+    fun isDataValidate() : Boolean {
+         password = binding.userPasswordLogin.text.toString()
+         email = binding.userEmailLogin.text.toString()
+        if (!Utility.isPassValid(password) || password.isEmpty()) {
+            binding.userPasswordLogin.error = "Write correct password"
+            return false
+        }
+
+        if (!Utility.isEmailValid(email) || email.isEmpty()) {
+            binding.userEmailLogin.error = "Write correct email"
+            return false
+        }
+        return true
+    }
     private fun showUserNotExistDialog() {
         val alertDialog = AlertDialog.Builder(this)
 
@@ -38,14 +88,17 @@ class LoginActivity : AppCompatActivity() {
             setTitle("Login Failed")
             setMessage("user is not exist, please register and try again")
             setPositiveButton("Register") { _, _ ->
-                goToRegisterScreen()
+                  goToRegisterScreen()
             }
         }.create().show()
-    }
 
+
+    }
     private fun goToRegisterScreen() {
-        Log.d(TAG, "goToRegisterScreen: ")
-        // intent handle
+         var intent=Intent(this,RegisterActivity::class.java)
+        startActivity(intent)
         finish()
     }
+    
+    
 }
