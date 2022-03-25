@@ -18,7 +18,6 @@ import com.example.news.models.User
      suspend fun getUserFromDataBase(userEmail:String,userPassword:String):User
 
 
-
  }
 
 

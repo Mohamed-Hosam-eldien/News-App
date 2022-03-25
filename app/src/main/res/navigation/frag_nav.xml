@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.news.NewsFragment"
+        android:name="com.example.news.newsHome.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.news.ProfileFragment"
+        android:name="com.example.news.profile.ProfileFragment"
         android:label="fragment_profile2"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.news.FavoritesFragment"
+        android:name="com.example.news.favourite.FavoritesFragment"
         android:label="FavoritesFragment" />
 </navigation>

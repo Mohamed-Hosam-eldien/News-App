@@ -19,7 +19,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="vertical"
-            tools:context=".news.MainActivity">
+            tools:context=".newsHome.home.MainActivity">
 
             <TextView
                 android:layout_width="match_parent"
