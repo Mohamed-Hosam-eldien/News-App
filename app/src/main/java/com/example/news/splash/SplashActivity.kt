@@ -22,12 +22,12 @@ class SplashActivity : AppCompatActivity() {
         var user: User? = Paper.book().read("user")
         Handler(Looper.myLooper()!!).postDelayed({
         if (user == null){
-            var intent= Intent(this, LoginActivity::class.java)
+            val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
         else{
-            var intent= Intent(this, MainActivity::class.java)
+            val intent= Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
