@@ -3,7 +3,8 @@ package com.example.news.appModules
 import android.content.Context
 import androidx.room.Room
 import com.example.news.data.source.db.AppDataBase
-import com.example.news.db.NewsDao
+import com.example.news.data.source.db.NewsDao
+import com.example.news.db.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +26,9 @@ object DataBaseModules {
 
     @Provides
     @Singleton
-    fun provideCurrentWeatherDao(db:AppDataBase): NewsDao = db.newsDawDao()
+    fun provideUserDao(db:AppDataBase): UserDao = db.userDao()
+    @Provides
+    @Singleton
+    fun provideNewsDao(db:AppDataBase): NewsDao=db.newsDao()
 
 }
