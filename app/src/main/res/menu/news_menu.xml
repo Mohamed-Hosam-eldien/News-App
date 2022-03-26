@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/bookmark"
+        android:title="Favorite"/>
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/newspaper"
+        android:title="News" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/man"
+        android:title="Profile" />
+</menu>
