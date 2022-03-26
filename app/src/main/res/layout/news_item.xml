@@ -62,7 +62,7 @@
                         android:layout_height="18dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/bookmark" />
+                        android:src="@drawable/common_full_open_on_phone" />
 
                     <TextView
                         android:id="@+id/publishAt"
