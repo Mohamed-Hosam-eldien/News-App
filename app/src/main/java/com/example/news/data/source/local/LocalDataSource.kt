@@ -27,6 +27,10 @@ class LocalDataSource  @Inject constructor(private val userDao: UserDao,private 
          return  newsDao.getNewsFromDataBase()
     }
 
+    override suspend fun getAllArticleBySearch(query: String): List<Article> {
+        return newsDao.getNewsBySearch(query)
+    }
+
     override suspend fun getNewsByUrlFromDataBase(newUrl: String): Article {
         return newsDao.getNewsByUrlFromDataBase(newUrl)
     }

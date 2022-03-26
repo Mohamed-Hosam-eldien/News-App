@@ -5,72 +5,97 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentNewsBinding
-import com.example.news.details.DetailsFragment
 import com.example.news.models.Article
 import com.example.news.utlities.Utility
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewsFragment : Fragment() ,OnNewClickListener{
-
-    lateinit var navControler: NavController
+class NewsFragment : Fragment(), OnNewClickListener {
 
     private val newsHomeViewModel: NewsHomeViewModel by viewModels()
-    private lateinit var binding : FragmentNewsBinding
-     lateinit var newsHomeAdapter:NewsHomeAdapter
+
+    private lateinit var binding: FragmentNewsBinding
+    lateinit var newsHomeAdapter: NewsHomeAdapter
+    lateinit var articleList : List<Article>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
-        binding.lifecycleOwner=this
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+        binding.lifecycleOwner = this
 
-        binding.viewModel=newsHomeViewModel
-        newsHomeAdapter= NewsHomeAdapter(requireContext(), arrayListOf(),this)
+        binding.viewModel = newsHomeViewModel
+        newsHomeAdapter = NewsHomeAdapter(requireContext(), arrayListOf(), this)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-          setUpUi()
-        navControler = Navigation.findNavController(view)
 
+        setUpUi()
+
+        initSearch()
 
     }
 
-    private fun setUpUi() {
-        if(Utility.isNetworkAvailable(requireContext())){
-            newsHomeViewModel.getAllNewsForHome(requireContext())
+    private fun initSearch() {
 
+        newsHomeViewModel.getNewsBySearch.observe(requireActivity()) { list ->
+            list.let {
+                newsHomeAdapter.setData(list)
+            }
         }
-        else{
+
+        binding.edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if(count == 0) {
+                    newsHomeAdapter.setData(articleList)
+                } else {
+                    searchDatabase(s.toString())
+                }
+            }
+        })
+
+        binding.search.setOnClickListener {
+            searchDatabase(binding.edtSearch.text.toString())
+        }
+    }
+
+    private fun setUpUi() {
+        if (Utility.isNetworkAvailable(requireContext())) {
+            newsHomeViewModel.getAllNewsForHome()
+        } else {
             newsHomeViewModel.getNewsFromDataBase()
             showMessage("no connection")
         }
         registerConnectivityNetworkMonitor()
         obserData()
-            binding.newsRecycle.apply {
-                setHasFixedSize(true)
-                layoutManager = LinearLayoutManager(requireContext(),
-                    LinearLayoutManager.VERTICAL ,false)
-                adapter=newsHomeAdapter
-            }
-
-
+        binding.newsRecycle.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL, false
+            )
+            adapter = newsHomeAdapter
         }
+
+    }
 
     private fun obserData() {
         observeShowData()
@@ -87,16 +112,15 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     }
 
     private fun showMessage(it: String) {
-            Snackbar.make(requireView(), it, Snackbar.LENGTH_INDEFINITE)
-                .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).setBackgroundTint(
-                    resources.getColor(
-                        R.color.black
-                    )
+        Snackbar.make(requireView(), it, Snackbar.LENGTH_INDEFINITE)
+            .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).setBackgroundTint(
+                resources.getColor(
+                    R.color.black
                 )
-                .setActionTextColor(resources.getColor(R.color.white)).setAction("قفل")
-                {
-                }.show()
-        }
+            )
+            .setActionTextColor(resources.getColor(R.color.white)).setAction("قفل") {
+            }.show()
+    }
 
     private fun observeLoading() {
         newsHomeViewModel.getLoad.observe(viewLifecycleOwner) {
@@ -107,9 +131,9 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     }
 
     private fun observeShowData() {
-        newsHomeViewModel.getNews.observe(viewLifecycleOwner
-        ) {
+        newsHomeViewModel.getNews.observe(viewLifecycleOwner) {
             if (it != null) {
+                articleList = it
                 newsHomeAdapter.setData(it)
             } else {
 
@@ -118,16 +142,15 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     }
 
 
-    override fun OnClick(view: View,newsUrl:String) {
-        val bundle= Bundle()
-         bundle.putString("newurl",newsUrl)
-        Navigation.findNavController(view).navigate(R.id.action_newsFragment_to_detailsFragment,bundle);
+    override fun OnClick() {
 
     }
 
+
     private fun registerConnectivityNetworkMonitor() {
         if (requireContext() != null) {
-            val connectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connectivityManager =
+                requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val builder = NetworkRequest.Builder()
             connectivityManager.registerNetworkCallback(builder.build(),
                 object : ConnectivityManager.NetworkCallback() {
@@ -135,16 +158,10 @@ class NewsFragment : Fragment() ,OnNewClickListener{
                         super.onAvailable(network)
                         if (activity != null) {
                             activity!!.runOnUiThread {
-                                newsHomeViewModel.getAllNewsForHome(requireContext())
-
-                                //                                binding.textNoInternet.visibility = View.GONE
-//                                binding.noNetworkResult.visibility = View.GONE
-//                                binding.linearLayout.visibility = View.VISIBLE
-//                                viewModel.getServicesData()
+                                newsHomeViewModel.getAllNewsForHome()
                             }
                         }
                     }
-
                     override fun onLost(network: Network) {
                         super.onLost(network)
                         if (activity != null) {
@@ -162,14 +179,9 @@ class NewsFragment : Fragment() ,OnNewClickListener{
         }
     }
 
-//    private fun checkNetwork(){
-//        if (NetworkConnection.checkInternetConnection(requireContext())) {
-//            viewModel.getServicesData()
-//        } else {
-//            binding.textNoInternet.visibility = View.VISIBLE
-//            binding.noNetworkResult.visibility = View.VISIBLE
-//            binding.linearLayout.visibility = View.GONE
-//
-//        }
-//    }
+    private fun searchDatabase(query: String) {
+        val searchQuery = "%$query%"
+        newsHomeViewModel.getNewsBySearch(searchQuery)
+    }
+
 }

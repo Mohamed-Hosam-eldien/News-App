@@ -11,7 +11,6 @@ import com.example.news.databinding.ActivityLoginBinding
 import com.example.news.utlities.Utility
 import com.example.news.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
-import io.paperdb.Paper
 import java.util.*
 
 @AndroidEntryPoint
@@ -19,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var password:String
     lateinit var email:String
+
+
     private val loginViewModel:LoginViewModel by viewModels()
     private lateinit var binding : ActivityLoginBinding
 
@@ -42,8 +43,10 @@ class LoginActivity : AppCompatActivity() {
                      loginViewModel.getUser
                     .observe(this) {
                         if(it!=null){
-                            Paper.book().write("user", it);
-                            goTopMainScreen()
+
+                          Utility.USER = it
+                            var intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
 
                         }
                         else{
@@ -59,13 +62,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun goTopMainScreen() {
-        var intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    fun isDataValidate() : Boolean {
+    private fun isDataValidate() : Boolean {
          password = binding.userPasswordLogin.text.toString()
          email = binding.userEmailLogin.text.toString()
         if (!Utility.isPassValid(password) || password.isEmpty()) {

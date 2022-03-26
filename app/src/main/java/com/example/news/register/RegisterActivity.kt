@@ -111,7 +111,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }.create().show()
 
-
     }
 
     private fun goToLoginScreen() {
