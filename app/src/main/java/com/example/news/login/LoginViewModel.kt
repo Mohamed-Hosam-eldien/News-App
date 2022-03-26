@@ -11,18 +11,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class LoginViewModel  @Inject
 constructor(var repository: RepositoryInterface):ViewModel(){
+
     private var _getUser = MutableLiveData<User>()
     var getUser:LiveData<User> =_getUser
 
     fun getUserFromDataBase(userEmail:String,userPassword:String)
     {
-
         viewModelScope.launch(Dispatchers.IO) {
-
-                var result= repository.getUserFromDataBase(userEmail,userPassword)
+                val result= repository.getUserFromDataBase(userEmail,userPassword)
                 _getUser.postValue(result)
             }
     }

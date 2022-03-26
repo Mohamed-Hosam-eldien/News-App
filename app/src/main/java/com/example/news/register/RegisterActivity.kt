@@ -52,30 +52,30 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun creatUser(): User {
 
-        var password = binding.userPassword.text.toString()
-        var userName = binding.userName.text.toString()
-        var email = binding.userEmail.text.toString()
-        var phone = binding.userPhone.text.toString()
+        val password = binding.userPassword.text.toString()
+        val userName = binding.userName.text.toString()
+        val email = binding.userEmail.text.toString()
+        val phone = binding.userPhone.text.toString()
 
-        var user = User(email, userName, password, phone)
+        val user = User(email, userName, password, phone)
         return user
     }
 
     private fun isDataValid(): Boolean {
 
-        var password = binding.userPassword.text.toString()
-        var userName = binding.userName.text.toString()
-        var email = binding.userEmail.text.toString()
-        var phone = binding.userPhone.text.toString()
-        var confirm = binding.confirmPassword.text.toString()
+        val password = binding.userPassword.text.toString()
+        val userName = binding.userName.text.toString()
+        val email = binding.userEmail.text.toString()
+        val phone = binding.userPhone.text.toString()
+        val confirm = binding.confirmPassword.text.toString()
 
-        if (!Utility.isPassValid(password) || password.isEmpty()) {
+        if (!Utility.isPassValid(password) ||password.isEmpty()) {
             binding.userPassword.error = "Write correct password"
             return false
         }
 
-        if (password != confirm) {
-            binding.confirmPassword.error = "password don't  match"
+        if(password!=confirm){
+            binding.confirmPassword.error="password don't  match"
             return false
         }
 
@@ -97,7 +97,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         return true
-
     }
 
     private fun showUserNotExistDialog() {
@@ -122,7 +121,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun goToMainScreen() {
-        var intent = Intent(this, MainActivity::class.java)
+        var intent=Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

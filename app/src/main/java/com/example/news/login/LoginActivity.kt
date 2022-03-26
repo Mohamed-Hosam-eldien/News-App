@@ -15,6 +15,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+
     lateinit var password:String
     lateinit var email:String
 

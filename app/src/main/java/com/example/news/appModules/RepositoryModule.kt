@@ -1,4 +1,5 @@
 package com.example.news.appModules
+
 import com.example.news.repository.Repository
 import com.example.news.repository.RepositoryInterface
 import dagger.Binds
