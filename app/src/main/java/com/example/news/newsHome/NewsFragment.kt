@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentNewsBinding
+import com.example.news.utlities.Utility
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,8 +47,15 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     }
 
     private fun setUpUi() {
-        newsHomeViewModel.getAllNewsForHome(requireContext())
+        if(Utility.isNetworkAvailable(requireContext())){
+            newsHomeViewModel.getAllNewsForHome(requireContext())
 
+        }
+        else{
+            newsHomeViewModel.getNewsFromDataBase()
+            showMessage("no connection")
+        }
+        registerConnectivityNetworkMonitor()
         obserData()
             binding.newsRecycle.apply {
                 setHasFixedSize(true)

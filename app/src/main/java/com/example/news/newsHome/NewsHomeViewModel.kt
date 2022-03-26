@@ -46,15 +46,18 @@ class NewsHomeViewModel @Inject constructor(
 
             }
 
-            var newsResult = getNewsFromDataBase()
-            _getNews.postValue(newsResult)
-             _setLoad.postValue(View.GONE)
+           getNewsFromDataBase()
         }
 
     }
 
-    suspend fun getNewsFromDataBase(): List<Article> {
-        return repository.getAllArticleFromDataBase()
+     fun getNewsFromDataBase() {
+         viewModelScope.launch {
+             var newsResult = repository.getAllArticleFromDataBase()
+             _getNews.postValue(newsResult)
+             _setLoad.postValue(View.GONE)
+         }
+
     }
 
 }
