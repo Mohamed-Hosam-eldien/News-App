@@ -29,14 +29,6 @@
                     android:contentDescription="@null"
                     android:scaleType="centerCrop" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="@android:style/Widget.ProgressBar.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/view"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="16dp" />
 
                 <View
                     android:id="@+id/view"

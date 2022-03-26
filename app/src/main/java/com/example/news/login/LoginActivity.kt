@@ -57,12 +57,9 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-
-
-
     }
 
-    fun isDataValidate() : Boolean {
+    private fun isDataValidate() : Boolean {
          password = binding.userPasswordLogin.text.toString()
          email = binding.userEmailLogin.text.toString()
         if (!Utility.isPassValid(password) || password.isEmpty()) {
