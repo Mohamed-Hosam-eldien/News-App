@@ -9,7 +9,11 @@
         android:id="@+id/newsFragment"
         android:name="com.example.news.newsHome.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.news.profile.ProfileFragment"
@@ -19,4 +23,14 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.news.favourite.FavoritesFragment"
         android:label="FavoritesFragment" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.news.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument android:name="newsUrl"
+            app:argType="string"
+
+            ></argument>
+    </fragment>
 </navigation>

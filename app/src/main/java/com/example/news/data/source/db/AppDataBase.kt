@@ -8,7 +8,7 @@ import com.example.news.models.Article
 import com.example.news.models.User
 
 @Database(entities = arrayOf(User::class,Article::class),
-    version = 1,
+    version = 2,
     exportSchema = false)
 //@TypeConverters(DataConverter::class)
 abstract class AppDataBase:RoomDatabase() {

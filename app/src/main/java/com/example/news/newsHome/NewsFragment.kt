@@ -12,9 +12,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentNewsBinding
+import com.example.news.details.DetailsFragment
+import com.example.news.models.Article
 import com.example.news.utlities.Utility
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NewsFragment : Fragment() ,OnNewClickListener{
 
+    lateinit var navControler: NavController
 
     private val newsHomeViewModel: NewsHomeViewModel by viewModels()
     private lateinit var binding : FragmentNewsBinding
@@ -41,7 +46,7 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
           setUpUi()
-
+        navControler = Navigation.findNavController(view)
 
 
     }
@@ -113,10 +118,12 @@ class NewsFragment : Fragment() ,OnNewClickListener{
     }
 
 
-    override fun OnClick() {
+    override fun OnClick(view: View,newsUrl:String) {
+        val bundle= Bundle()
+         bundle.putString("newurl",newsUrl)
+        Navigation.findNavController(view).navigate(R.id.action_newsFragment_to_detailsFragment,bundle);
 
     }
-
 
     private fun registerConnectivityNetworkMonitor() {
         if (requireContext() != null) {
