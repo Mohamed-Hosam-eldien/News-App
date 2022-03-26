@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentNewsBinding
@@ -142,11 +143,6 @@ class NewsFragment : Fragment(), OnNewClickListener {
     }
 
 
-    override fun OnClick() {
-
-    }
-
-
     private fun registerConnectivityNetworkMonitor() {
         if (requireContext() != null) {
             val connectivityManager =
@@ -184,4 +180,12 @@ class NewsFragment : Fragment(), OnNewClickListener {
         newsHomeViewModel.getNewsBySearch(searchQuery)
     }
 
-}
+    override fun OnClick(view: View, newUrl: String) {
+
+        val bundle= Bundle()
+        bundle.putString("newurl",newUrl)
+        Navigation.findNavController(view).navigate(R.id.action_newsFragment_to_detailsFragment,bundle);
+
+    }
+    }
+

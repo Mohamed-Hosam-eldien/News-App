@@ -28,6 +28,9 @@ class NewsHomeAdapter(var context: Context,var newsList:ArrayList<Article>,var o
       holder.view.txtDescription.text=newsItem.description
         Glide.with(context).load(newsItem.urlToImage)
             .into(holder.view.image)
+           holder.view.cardItem.setOnClickListener {
+               onNewClickListener.OnClick(holder.itemView,newsItem.url!!)
+           }
 
 
     }

@@ -13,4 +13,6 @@ interface RepositoryInterface {
    suspend fun insertNews(article: Article)
    suspend fun getAllArticleFromDataBase():List<Article>
    suspend fun getAllArticleBySearch(query: String):List<Article>
+   suspend fun getNewsByUrlFromDataBase(newUrl:String):Article
+
 }

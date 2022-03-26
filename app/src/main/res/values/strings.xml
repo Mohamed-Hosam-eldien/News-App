@@ -25,5 +25,7 @@
     <string name="profile">Profile</string>
     <string name="news">News</string>
     <string name="favorite">Favorite</string>
+    <string name="open_in_browser">open in browser</string>
+    <string name="read_more">read more</string>
 
 </resources>

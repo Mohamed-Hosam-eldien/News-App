@@ -57,6 +57,9 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+
+
+
     }
 
     private fun isDataValidate() : Boolean {

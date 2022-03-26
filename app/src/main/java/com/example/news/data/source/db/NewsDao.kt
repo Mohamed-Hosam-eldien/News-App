@@ -14,6 +14,8 @@ interface NewsDao {
 
     @Query("SELECT * FROM News ")
     suspend fun getNewsFromDataBase():List<Article>
+    @Query("SELECT * FROM News WHERE url =:newUrl ")
+    suspend fun getNewsByUrlFromDataBase(newUrl:String):Article
 
 
     @Query("SELECT * FROM News where name Like :searchQuery Or title Like :searchQuery" +
