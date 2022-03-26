@@ -92,6 +92,8 @@ dependencies {
     //lottie
     def lottieVersion = "3.6.1"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    //paper
+    implementation 'io.github.pilgr:paperdb:2.7.2'
 }
 kapt {
     correctErrorTypes = true
