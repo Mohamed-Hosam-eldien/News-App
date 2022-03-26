@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class LoginViewModel  @Inject
-constructor(var repository: RepositoryInterface):ViewModel(){
+class LoginViewModel  @Inject constructor(
+    var repository: RepositoryInterface):ViewModel(){
 
     private var _getUser = MutableLiveData<User>()
     var getUser:LiveData<User> =_getUser
