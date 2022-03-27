@@ -8,6 +8,7 @@ import javax.annotation.Nullable
 @Entity(tableName = "News")
 data class Article(
 
+    val isFavorite:Int,
     val author: String?,
     val content: String?,
     val description: String?,

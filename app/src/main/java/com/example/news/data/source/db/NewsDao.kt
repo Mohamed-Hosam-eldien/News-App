@@ -22,4 +22,12 @@ interface NewsDao {
             " Or author Like :searchQuery Or content Like :searchQuery Or description Like :searchQuery")
     suspend fun getNewsBySearch(searchQuery : String):List<Article>
 
+    @Query("SELECT * FROM NEWS WHERE isFavorite = 1")
+    suspend fun getAllNewsToFav():List<Article>
+
+    @Query("UPDATE news SET isFavorite = :favorite WHERE url = :url")
+    suspend fun getNewsStatus(favorite:Int, url:String)
+
+
+
 }

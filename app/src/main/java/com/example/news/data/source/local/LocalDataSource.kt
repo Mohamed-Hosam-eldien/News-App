@@ -34,4 +34,12 @@ class LocalDataSource  @Inject constructor(private val userDao: UserDao,private 
     override suspend fun getNewsByUrlFromDataBase(newUrl: String): Article {
         return newsDao.getNewsByUrlFromDataBase(newUrl)
     }
+
+    override suspend fun getAllNewsToFav(): List<Article> {
+        return newsDao.getAllNewsToFav()
+    }
+
+    override suspend fun getNewsStatus(favorite: Int, url: String) {
+        newsDao.getNewsStatus(favorite, url)
+    }
 }

@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class Repository @Inject constructor
     (var localDataSource: LocalDataSourceInterface,
      var remoteDataSource:RemoteDataSourceInterface
-) :RepositoryInterface{
+) :RepositoryInterface {
 
     override  suspend fun getUserFromDataBase(userEmail: String, userPassword: String):User {
         return localDataSource.getUserFromDataBase(userEmail,userPassword)
@@ -57,5 +57,13 @@ class Repository @Inject constructor
 
     override suspend fun getNewsByUrlFromDataBase(newUrl: String): Article {
         return localDataSource.getNewsByUrlFromDataBase(newUrl)
+    }
+
+    override suspend fun getAllNewsToFav(): List<Article> {
+        return localDataSource.getAllNewsToFav()
+    }
+
+    override suspend fun getNewsStatus(favorite: Int, url: String) {
+        localDataSource.getNewsStatus(favorite, url)
     }
 }
