@@ -27,5 +27,9 @@
     <string name="favorite">Favorite</string>
     <string name="open_in_browser">open in browser</string>
     <string name="read_more">read more</string>
+    <string name="change_password">change password</string>
+    <string name="old_pass">old password</string>
+    <string name="new_password">new password</string>
+    <string name="change">change</string>
 
 </resources>

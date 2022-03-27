@@ -5,12 +5,14 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.core.os.HandlerCompat.postDelayed
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +22,8 @@ import com.example.news.models.Article
 import com.example.news.utlities.Utility
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class NewsFragment : Fragment(), OnNewClickListener {
@@ -45,9 +49,12 @@ class NewsFragment : Fragment(), OnNewClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpUi()
+        val delayedHandler = Handler()
+        delayedHandler.postDelayed({
+            setUpUi()
+            initSearch()
+        }, 2000)
 
-        initSearch()
 
     }
 
@@ -134,6 +141,8 @@ class NewsFragment : Fragment(), OnNewClickListener {
     private fun observeShowData() {
         newsHomeViewModel.getNews.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.newsRecycle.visibility = View.VISIBLE
+                binding.shimmerFrameLayout.visibility = View.GONE
                 articleList = it
                 newsHomeAdapter.setData(it)
             } else {

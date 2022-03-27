@@ -3,7 +3,6 @@ package com.example.news.data.source.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.news.db.UserDao
 import com.example.news.models.Article
 import com.example.news.models.User
 

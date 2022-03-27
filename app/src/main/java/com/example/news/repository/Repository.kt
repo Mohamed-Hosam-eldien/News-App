@@ -58,4 +58,8 @@ class Repository @Inject constructor
     override suspend fun getNewsByUrlFromDataBase(newUrl: String): Article {
         return localDataSource.getNewsByUrlFromDataBase(newUrl)
     }
+
+    override suspend fun updateUserPass(userPassword: String, userEmail: String) {
+        return localDataSource.updatePassword(userPassword, userEmail)
+    }
 }
