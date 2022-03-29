@@ -34,17 +34,24 @@ class NewsHomeAdapter(
 
         //holder.view.txtSource.text=newsItem.
 
+        if(newsItem.isFavorite==1){
+            holder.view.ivFavorit.setImageResource(R.drawable.ic_baseline_favorite_24)
+        } else{
+            holder.view.ivFavorit.setImageResource(R.drawable.ic_favorite_border)
+        }
         holder.view.ivFavorit.setOnClickListener {
-
-            if (holder.view.ivFavorit.id != R.drawable.ic_favorite_border) {
+           // if (holder.view.ivFavorit.drawable.constantState == context.resources.getDrawable(R.drawable.ic_favorite_border).constantState) {
+            if(holder.view.ivFavorit.tag.equals("1")){
                 Toast.makeText(context, "in", Toast.LENGTH_LONG).show()
                 holder.view.ivFavorit.setImageResource(R.drawable.ic_baseline_favorite_24)
+                holder.view.ivFavorit.tag="0"
                 onNewClickListener.onFavClick(1, newsItem.url.toString())
             } else {
                 Toast.makeText(context, "out", Toast.LENGTH_SHORT).show()
-
                 holder.view.ivFavorit.setImageResource(R.drawable.ic_favorite_border)
+                holder.view.ivFavorit.tag="1"
                 onNewClickListener.onFavClick(0, newsItem.url.toString())
+
             }
 
         }
