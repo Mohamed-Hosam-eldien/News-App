@@ -15,6 +15,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+
     lateinit var password:String
     lateinit var email:String
 
@@ -61,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun isDataValidate() : Boolean {
+    private fun isDataValidate() : Boolean {
          password = binding.userPasswordLogin.text.toString()
          email = binding.userEmailLogin.text.toString()
         if (!Utility.isPassValid(password) || password.isEmpty()) {
