@@ -22,7 +22,7 @@ object DataBaseModules {
             context,
             AppDataBase::class.java,
             "NewsApp-DB"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
     @Provides
     @Singleton
